@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stare-decisis"
+dynamic = ["version"]
+description = "Auditable decisions across rules, probabilistic models and LLM output: hash-chained reasoning log, cost-aware re-evaluation, retraction and reversal tracking."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Timothy Poschel" }]
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+dependencies = []
+keywords = ["audit", "decision", "governance", "model risk", "rule engine", "bayesian", "llm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Office/Business :: Financial",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+stare-decisis = "stare_decisis.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "stare_decisis.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "tests"]
